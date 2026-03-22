@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'co.com.screenplay.project'
+version '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '3.6.12'
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    testImplementation "com.github.javafaker:javafaker:1.0.2"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "ch.qos.logback:logback-classic:1.2.10"
+}
+
+test {
+    useJUnit()
+    testLogging.showStandardStreams = true
+}
