@@ -64,6 +64,5 @@ public class RegisterUser implements Task {
         actor.attemptsTo(
                 WaitUntil.the(HomePage.NAVBAR, isVisible()).forNoMoreThan(10).seconds()
         );
-        );
     }
 }
