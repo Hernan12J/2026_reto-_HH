@@ -13,11 +13,34 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # ☕ Instalar Java
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '11'
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 \
+            libgconf-2-4 \
+            libxi6 \
+            libxcursor1 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxrandr2 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libxss1 \
+            libasound2 \
+            libpangocairo-1.0-0 \
+            libpango-1.0-0 \
+            libgtk-3-0
 
       - name: Give execute permission to gradlew
         run: chmod +x gradlew
@@ -26,6 +49,7 @@ jobs:
         run: ./gradlew clean test
 
       - name: Upload Serenity Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: serenity-report
