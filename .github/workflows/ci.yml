@@ -20,7 +20,7 @@ jobs:
           java-version: '11'
 
       - name: Run tests
-        run: ./gradlew clean test aggregate
+        run: ./gradlew clean test
 
       - name: Upload Serenity Report
         uses: actions/upload-artifact@v4
