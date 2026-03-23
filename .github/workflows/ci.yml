@@ -13,15 +13,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # ☕ Instalar Java
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
