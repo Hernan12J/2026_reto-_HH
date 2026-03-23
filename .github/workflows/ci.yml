@@ -1,4 +1,4 @@
-name: Run Automation Tests
+name: Serenity BDD Tests
 
 on:
   push:
@@ -18,16 +18,18 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
 
-      - name: Grant execute permission to Gradle
+      - name: Give execute permission to gradlew
         run: chmod +x gradlew
 
-      - name: Run tests (CI - Chrome)
-        run: ./gradlew clean test -Denvironment=ci
+      - name: Run tests
+        run: ./gradlew clean test
 
       - name: Upload Serenity Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: serenity-report
-          path: target/site/serenity
+          path: target/site/serenity/
