@@ -25,9 +25,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run tests
-        run: ./gradlew clean test
-        env:
-          WEBDRIVER_DRIVER: chrome
+        run: ./gradlew clean test -Dwebdriver.driver=chrome -Dchrome.switches="--headless=new,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080"
 
       - name: Upload Serenity Report
         if: always()
