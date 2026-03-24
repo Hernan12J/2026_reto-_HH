@@ -26,6 +26,9 @@ jobs:
 
       - name: Remove local serenity config
         run: rm src/test/resources/serenity.properties
+
+      - name: Remove local serenity config
+        run: rm src/test/resources/serenity.conf
         
       - name: Run tests
         run: ./gradlew clean test
