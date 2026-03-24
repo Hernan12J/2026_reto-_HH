@@ -24,6 +24,9 @@ jobs:
       - name: Give execute permission to gradlew
         run: chmod +x gradlew
 
+      - name: Remove local serenity config
+        run: rm src/test/resources/serenity.properties
+        
       - name: Run tests
         run: ./gradlew clean test -Dwebdriver.driver=chrome -Dchrome.switches="--headless=new,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080"
 
