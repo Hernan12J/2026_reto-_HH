@@ -24,8 +24,10 @@ jobs:
       - name: Give execute permission to gradlew
         run: chmod +x gradlew
 
-      - name: Run tests (CI mode)
-        run: ./gradlew clean test -Denvironment=ci -Dwebdriver.driver=chrome
+      - name: Run tests
+        run: ./gradlew clean test
+        env:
+          WEBDRIVER_DRIVER: chrome
 
       - name: Upload Serenity Report
         if: always()
