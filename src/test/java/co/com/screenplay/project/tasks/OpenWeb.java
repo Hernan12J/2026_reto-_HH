@@ -7,9 +7,12 @@ package co.com.screenplay.project.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import co.com.screenplay.project.userinterfaces.HomePage;
+import org.openqa.selenium.WebDriver;
+
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class OpenWeb implements Task {
@@ -24,5 +27,7 @@ public class OpenWeb implements Task {
                 Open.url("https://www.demoblaze.com/"),
                 WaitUntil.the(HomePage.NAVBAR, isVisible()).forNoMoreThan(10).seconds()
         );
+        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
+        driver.manage().window().maximize();
     }
 }

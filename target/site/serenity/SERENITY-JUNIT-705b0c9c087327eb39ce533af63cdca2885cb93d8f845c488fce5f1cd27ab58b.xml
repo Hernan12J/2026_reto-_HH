@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="2" name="User registration on Demoblaze" skipped="0" tests="2" time="7.55" timestamp="2026-03-22 02:24:03"><testcase name="Successful user registration"><failure message="&#13;&#10;Expected: is &lt;true&gt;&#13;&#10;     but: was &lt;false&gt;" type="java.lang.AssertionError">&#13;
-Expected: is &lt;true&gt;&#13;
-     but: was &lt;false&gt;</failure><system-err>&#13;
-Expected: is &lt;true&gt;&#13;
-     but: was &lt;false&gt;&#13;
-co.com.screenplay.project.stepdefinitions.RegisterStepDefinition.validateSuccessfulRegistration(AbrirWebrStepDefinition.java:38)&#13;
-✽.he should see a successful registration message(file:///C:/Users/hhern/Reto_CH_HH_2026/src/test/resources/features/register_user.feature:13)&#13;
-</system-err></testcase></testsuite>
