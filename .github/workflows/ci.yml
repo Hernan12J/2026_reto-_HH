@@ -28,7 +28,7 @@ jobs:
         run: rm src/test/resources/serenity.properties
         
       - name: Run tests
-        run: ./gradlew clean test -Dwebdriver.driver=chrome -Dchrome.switches="--headless=new,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080"
+        run: ./gradlew clean test -Dwebdriver.driver=chrome -Dwebdriver.chrome.args="--headless=new,--no-sandbox,--disable-dev-shm-usage,--window-size=1920,1080"
 
       - name: Upload Serenity Report
         if: always()
