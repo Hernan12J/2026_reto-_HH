@@ -1,2 +1,3 @@
 "Story","Title","Result","Date","Stability","Duration (s)"
-"Login de usuario y compra de producto  en Demoblaze","Compra exitosa de producto","SUCCESS","2026-03-27T23:12:21.683154-05:00[America/Bogota]","0.0","15.01"
+"Login de usuario en Demoblaze","Login fallido con credenciales incorrectas","SUCCESS","2026-03-28T00:49:01.9003216-05:00[America/Bogota]","0.0","6.18"
+"Login de usuario y compra de producto  en Demoblaze","Compra exitosa de producto","SUCCESS","2026-03-28T00:49:08.2176792-05:00[America/Bogota]","0.0","11.42"

@@ -14,7 +14,7 @@ public class LoginPage {
             .located(By.id("loginusername"));
     public static final Target TXT_LOGIN_PASSWORD = Target.the("Input passsword Login in")
             .located(By.id("loginpassword"));
-    public static final Target BTN_LOGIN_IN = Target.the("botón de enviar registro")
+    public static final Target BTN_LOGIN_IN = Target.the("botón de enviar registro Login")
             .located(By.xpath("//button[text()='Log in']"));
     public static final Target LBL_LOGIN_USER = Target.the("Label con usuario que inicio login")
             .located(By.id("nameofuser"));

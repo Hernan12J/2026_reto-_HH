@@ -40,8 +40,7 @@ public class LoginUser implements Task {
                 WaitUntil.the(LoginPage.TXT_LOGIN_USERNAME, isVisible()).forNoMoreThan(5).seconds(),
                 Enter.theValue(username).into(LoginPage.TXT_LOGIN_USERNAME),
                 Enter.theValue(password).into(LoginPage.TXT_LOGIN_PASSWORD),
-                Click.on(LoginPage.BTN_LOGIN_IN),
-                WaitUntil.the(LoginPage.LBL_LOGIN_USER, isVisible()).forNoMoreThan(10).seconds()
+                Click.on(LoginPage.BTN_LOGIN_IN)
         );
     }
 }

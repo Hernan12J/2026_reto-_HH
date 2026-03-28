@@ -4,7 +4,9 @@
  */
 package co.com.screenplay.project.stepdefinitions;
 
+
 import co.com.screenplay.project.questions.LoginResult;
+import co.com.screenplay.project.tasks.LoginInvalidUser;
 import co.com.screenplay.project.tasks.LoginUser;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Entonces;
@@ -12,6 +14,7 @@ import io.cucumber.java.es.Entonces;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepDefinition {
 
@@ -22,11 +25,29 @@ public class LoginStepDefinition {
     }
     @Entonces("el deberia ver su nombre de usuario en la pagina")
     public void validarLogin() {
+
+        String username = System.getenv("USER_DEMO");
+
         theActorInTheSpotlight().should(
                 seeThat(
                         LoginResult.userName(),
-                        containsString("Test2cre2g2")
+                        containsString(username)
                 )
         );
+    }
+    @Cuando("el inicia sesion con credenciales invalidas")
+    public void loginInvalido() {
+
+        theActorInTheSpotlight().attemptsTo(
+                LoginInvalidUser.attempt());
+    }
+
+    @Entonces("deberia ver un mensaje de error en el login")
+    public void validarErrorLogin() {
+
+        String mensaje = theActorInTheSpotlight().recall("alertMessage");
+
+        assertThat(mensaje)
+                .containsIgnoringCase("User does not exist.");
     }
 }
