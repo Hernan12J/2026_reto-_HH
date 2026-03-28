@@ -3,17 +3,13 @@
  * @created 03/22/2026 1:31 p. m.
  */
 package co.com.screenplay.project.tasks;
+import co.com.screenplay.project.interactions.HandleAlert;
 import co.com.screenplay.project.userinterfaces.ProductPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -31,21 +27,8 @@ public class AddProductToCart implements Task {
         actor.attemptsTo(
                 Click.on(ProductPage.LNK_PRODUCT),
                 WaitUntil.the(ProductPage.BTN_ADD_TO_CART, isVisible()).forNoMoreThan(5).seconds(),
-                Click.on(ProductPage.BTN_ADD_TO_CART)
+                Click.on(ProductPage.BTN_ADD_TO_CART),
+                HandleAlert.capture()
         );
-
-        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
-
-        try {
-            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-
-            System.out.println("ALERTA ADD TO CART: " + alert.getText());
-
-            alert.accept();
-
-        } catch (Exception e) {
-            System.out.println("Alert no apareció en CI (comportamiento esperado)");
-        }
     }
 }
