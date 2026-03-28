@@ -27,7 +27,7 @@ public class OpenWeb implements Task {
                 Open.url("https://www.demoblaze.com/"),
                 WaitUntil.the(HomePage.NAVBAR, isVisible()).forNoMoreThan(10).seconds()
         );
-        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
-        driver.manage().window().maximize();
+//        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
+//        driver.manage().window().maximize();
     }
 }
