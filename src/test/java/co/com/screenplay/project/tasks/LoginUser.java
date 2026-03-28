@@ -1,5 +1,6 @@
 package co.com.screenplay.project.tasks;
 
+import co.com.screenplay.project.interactions.HandleAlert;
 import co.com.screenplay.project.userinterfaces.LoginPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -14,10 +15,12 @@ public class LoginUser implements Task {
 
     private final String username;
     private final String password;
+    private final boolean expectError;
 
-    public LoginUser(String username, String password) {
+    public LoginUser(String username, String password, boolean expectError) {
         this.username = username;
         this.password = password;
+        this.expectError = expectError;
     }
 
     public static LoginUser withEnvironmentCredentials() {
@@ -26,10 +29,14 @@ public class LoginUser implements Task {
         String password = System.getenv("PASS_DEMO");
 
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
-            throw new IllegalStateException("Variables de entorno no configuradas correctamente: USER_DEMO / PASS_DEMO");
+            throw new IllegalStateException("Variables de entorno no configuradas correctamente");
         }
 
-        return Tasks.instrumented(LoginUser.class, username, password);
+        return Tasks.instrumented(LoginUser.class, username, password, false);
+    }
+
+    public static LoginUser withInvalidCredentials() {
+        return Tasks.instrumented(LoginUser.class, "usuarioFake", "passFake", true);
     }
 
     @Override
@@ -40,8 +47,17 @@ public class LoginUser implements Task {
                 WaitUntil.the(LoginPage.TXT_LOGIN_USERNAME, isVisible()).forNoMoreThan(5).seconds(),
                 Enter.theValue(username).into(LoginPage.TXT_LOGIN_USERNAME),
                 Enter.theValue(password).into(LoginPage.TXT_LOGIN_PASSWORD),
-                Click.on(LoginPage.BTN_LOGIN_IN),
-                WaitUntil.the(LoginPage.LBL_LOGIN_USER, isVisible()).forNoMoreThan(10).seconds()
+                Click.on(LoginPage.BTN_LOGIN_IN)
         );
+
+        if (expectError) {
+            actor.attemptsTo(
+                    HandleAlert.capture()
+            );
+        } else {
+            actor.attemptsTo(
+                    WaitUntil.the(LoginPage.LBL_LOGIN_USER, isVisible()).forNoMoreThan(10).seconds()
+            );
+        }
     }
 }

@@ -7,7 +7,7 @@ package co.com.screenplay.project.stepdefinitions;
 
 import co.com.screenplay.project.questions.LoginFailed;
 import co.com.screenplay.project.questions.LoginResult;
-import co.com.screenplay.project.tasks.LoginInvalidUser;
+//import co.com.screenplay.project.tasks.LoginInvalidUser;
 import co.com.screenplay.project.tasks.LoginUser;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Entonces;
@@ -19,9 +19,10 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class LoginStepDefinition {
 
     @Cuando("el inicia sesion con credenciales validas")
-    public void login() {
+    public void loginValido() {
         theActorInTheSpotlight().attemptsTo(
-                LoginUser.withEnvironmentCredentials());
+                LoginUser.withEnvironmentCredentials()
+        );
     }
     @Entonces("el deberia ver su nombre de usuario en la pagina")
     public void validarLogin() {
@@ -29,21 +30,18 @@ public class LoginStepDefinition {
         String username = System.getenv("USER_DEMO");
 
         theActorInTheSpotlight().should(
-                seeThat(
-                        LoginResult.userName(),
-                        containsString(username)
-                )
+                seeThat(LoginResult.userName(), containsString(username))
         );
     }
     @Cuando("el inicia sesion con credenciales invalidas")
     public void loginInvalido() {
-
         theActorInTheSpotlight().attemptsTo(
-                LoginInvalidUser.attempt());
+                LoginUser.withInvalidCredentials()
+        );
     }
 
     @Entonces("deberia ver un mensaje de error en el login")
-    public void validarErrorLogin() {
+    public void validarLoginFallido() {
 
         theActorInTheSpotlight().should(
                 seeThat(LoginFailed.unsuccessfully())

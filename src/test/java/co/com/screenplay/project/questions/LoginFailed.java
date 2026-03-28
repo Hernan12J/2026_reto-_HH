@@ -4,10 +4,8 @@
  */
 package co.com.screenplay.project.questions;
 
-import co.com.screenplay.project.userinterfaces.LoginPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
-import net.serenitybdd.screenplay.questions.Text;
 
 public class LoginFailed implements Question<Boolean> {
 
@@ -17,9 +15,19 @@ public class LoginFailed implements Question<Boolean> {
 
     @Override
     public Boolean answeredBy(Actor actor) {
-        String text = Text.of(LoginPage.LBL_LOGIN_USER)
-                .answeredBy(actor);
 
-        return text == null || text.trim().isEmpty();
+        String alert = actor.recall("alertMessage");
+
+        if (!"NO_ALERT".equals(alert)) {
+            return alert.toLowerCase().contains("wrong")
+                    || alert.toLowerCase().contains("user");
+        }
+
+        try {
+            String username = actor.asksFor(LoginResult.userName());
+            return username == null || username.trim().isEmpty();
+        } catch (Exception e) {
+            return true;
+        }
     }
 }
