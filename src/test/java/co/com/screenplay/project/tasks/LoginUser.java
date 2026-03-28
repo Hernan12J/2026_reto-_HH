@@ -20,7 +20,15 @@ public class LoginUser implements Task {
         this.password = password;
     }
 
-    public static LoginUser withCredentials(String username, String password) {
+    public static LoginUser withEnvironmentCredentials() {
+
+        String username = System.getenv("USER_DEMO");
+        String password = System.getenv("PASS_DEMO");
+
+        if (username == null || password == null) {
+            throw new IllegalStateException("Las variables de entorno USER_DEMO o PASS_DEMO no están definidas");
+        }
+
         return Tasks.instrumented(LoginUser.class, username, password);
     }
 

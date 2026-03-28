@@ -15,12 +15,10 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class LoginStepDefinition {
 
-    @Cuando("el inicia sesion con usuario {string} y contrasena {string}")
-    public void login(String username, String password) {
-
+    @Cuando("el inicia sesion con credenciales validas")
+    public void login() {
         theActorInTheSpotlight().attemptsTo(
-                LoginUser.withCredentials(username, password)
-        );
+                LoginUser.withEnvironmentCredentials());
     }
     @Entonces("el deberia ver su nombre de usuario en la pagina")
     public void validarLogin() {

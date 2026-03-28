@@ -26,6 +26,9 @@ jobs:
         
       - name: Run tests
         run: ./gradlew clean test
+        env:
+          USER_DEMO: ${{ secrets.USER_DEMO }}
+          PASS_DEMO: ${{ secrets.PASS_DEMO }}
 
       - name: Upload Serenity Report
         if: always()
