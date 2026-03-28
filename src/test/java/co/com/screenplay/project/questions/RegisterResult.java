@@ -24,11 +24,6 @@ public class RegisterResult implements Question<Boolean> {
             return alert.toLowerCase().contains("sign up successful");
         }
 
-        try {
-            return Visibility.of(HomePage.NAVBAR)
-                    .answeredBy(actor);
-        } catch (Exception e) {
-            return false;
-        }
+        return Visibility.of(HomePage.NAVBAR).answeredBy(actor);
     }
 }

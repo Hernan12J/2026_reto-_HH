@@ -34,15 +34,14 @@ public class RegisterStepDefinition {
     }
 
     @Cuando("el se registra con credenciales validas")
-    public void registroDinamico() {
-
+    public void registroValido() {
         theActorInTheSpotlight().attemptsTo(
                 RegisterUser.withRandomCredentials()
         );
     }
 
     @Entonces("el deberia ver un mensaje de registro exitoso")
-    public void validaRegistroExitoso() {
+    public void validarRegistroExitoso() {
 
         theActorInTheSpotlight().should(
                 seeThat(RegisterResult.isSuccessful())
@@ -51,9 +50,8 @@ public class RegisterStepDefinition {
 
     @Cuando("el intenta registrarse con campos vacios")
     public void registroVacio() {
-
         theActorInTheSpotlight().attemptsTo(
-                RegisterWithEmptyFields.attempt()
+                RegisterUser.withEmptyFields()
         );
     }
 

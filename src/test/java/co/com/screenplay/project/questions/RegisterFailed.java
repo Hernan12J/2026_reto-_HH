@@ -18,17 +18,12 @@ public class RegisterFailed implements Question<Boolean> {
     @Override
     public Boolean answeredBy(Actor actor) {
 
-        String alert = actor.recall("registerError");
+        String alert = actor.recall("alertMessage");
 
         if (!"NO_ALERT".equals(alert)) {
             return alert.toLowerCase().contains("please fill out");
         }
 
-        try {
-            return Visibility.of(RegisterPage.TXT_USERNAME)
-                    .answeredBy(actor);
-        } catch (Exception e) {
-            return true;
-        }
+        return Visibility.of(RegisterPage.TXT_USERNAME).answeredBy(actor);
     }
 }
