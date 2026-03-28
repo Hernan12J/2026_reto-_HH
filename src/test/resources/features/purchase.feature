@@ -3,6 +3,7 @@
 # language: es
 Característica: Login de usuario y compra de producto  en Demoblaze
 
+  @HH-3
 Escenario: Compra exitosa de producto
   Dado que "Hernan" abre el sitio web
   Y el inicia sesion con credenciales validas

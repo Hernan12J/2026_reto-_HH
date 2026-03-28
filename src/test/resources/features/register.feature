@@ -8,6 +8,7 @@ Característica: Registro de usuario en Demoblaze
   Quiero registrarme en la plataforma
   Para poder iniciar sesión posteriormente
 
+  @HH-4
   Escenario: Registro exitoso de usuario
     Dado que "Hernan" abre el sitio web
     Cuando el se registra con credenciales validas

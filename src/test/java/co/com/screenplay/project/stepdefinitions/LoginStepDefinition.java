@@ -15,7 +15,6 @@ import io.cucumber.java.es.Entonces;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepDefinition {
 

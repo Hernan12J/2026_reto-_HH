@@ -1,5 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"Login de usuario en Demoblaze","Login exitoso de usuario","SUCCESS","2026-03-28T00:48:53.9403188-05:00[America/Bogota]","0.0","7.77"
-"Login de usuario en Demoblaze","Login fallido con credenciales incorrectas","SUCCESS","2026-03-28T00:49:01.9003216-05:00[America/Bogota]","0.0","6.18"
-"Login de usuario y compra de producto  en Demoblaze","Compra exitosa de producto","SUCCESS","2026-03-28T00:49:08.2176792-05:00[America/Bogota]","0.0","11.42"
-"Registro de usuario en Demoblaze","Registro exitoso de usuario","SUCCESS","2026-03-28T00:49:19.7925439-05:00[America/Bogota]","0.0","7.28"
