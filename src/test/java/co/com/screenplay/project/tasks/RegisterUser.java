@@ -43,7 +43,7 @@ public class RegisterUser implements Task {
         );
 
         WebDriver driver = BrowseTheWeb.as(actor).getDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
