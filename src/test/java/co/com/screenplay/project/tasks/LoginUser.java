@@ -25,8 +25,8 @@ public class LoginUser implements Task {
         String username = System.getenv("USER_DEMO");
         String password = System.getenv("PASS_DEMO");
 
-        if (username == null || password == null) {
-            throw new IllegalStateException("Las variables de entorno USER_DEMO o PASS_DEMO no están definidas");
+        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
+            throw new IllegalStateException("Variables de entorno no configuradas correctamente: USER_DEMO / PASS_DEMO");
         }
 
         return Tasks.instrumented(LoginUser.class, username, password);
