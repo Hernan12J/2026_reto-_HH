@@ -5,6 +5,8 @@
 package co.com.screenplay.project.stepdefinitions;
 
 
+import co.com.screenplay.project.questions.RegisterFailed;
+import co.com.screenplay.project.questions.RegisterResult;
 import co.com.screenplay.project.tasks.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
@@ -42,20 +44,25 @@ public class RegisterStepDefinition {
     @Entonces("el deberia ver un mensaje de registro exitoso")
     public void validaRegistroExitoso() {
 
-        String mensaje = theActorInTheSpotlight().recall("alertMessage");
+        theActorInTheSpotlight().should(
+                seeThat(RegisterResult.isSuccessful())
+        );
+    }
 
-        if (!mensaje.equals("NO_ALERT")) {
+    @Cuando("el intenta registrarse con campos vacios")
+    public void registroVacio() {
 
-            theActorInTheSpotlight().should(
-                    seeThat(
-                            actor -> mensaje,
-                            containsString("Sign up successful")
-                    )
-            );
+        theActorInTheSpotlight().attemptsTo(
+                RegisterWithEmptyFields.attempt()
+        );
+    }
 
-        } else {
-            System.out.println("Registro sin alert en CI, se omite validación estricta");
-        }
+    @Entonces("el deberia ver un mensaje de error de registro")
+    public void validarRegistroFallido() {
+
+        theActorInTheSpotlight().should(
+                seeThat(RegisterFailed.withEmptyFields())
+        );
     }
 
 }
