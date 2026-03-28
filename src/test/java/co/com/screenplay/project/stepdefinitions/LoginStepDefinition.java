@@ -5,6 +5,7 @@
 package co.com.screenplay.project.stepdefinitions;
 
 
+import co.com.screenplay.project.questions.LoginFailed;
 import co.com.screenplay.project.questions.LoginResult;
 import co.com.screenplay.project.tasks.LoginInvalidUser;
 import co.com.screenplay.project.tasks.LoginUser;
@@ -45,9 +46,8 @@ public class LoginStepDefinition {
     @Entonces("deberia ver un mensaje de error en el login")
     public void validarErrorLogin() {
 
-        String mensaje = theActorInTheSpotlight().recall("alertMessage");
-
-        assertThat(mensaje)
-                .containsIgnoringCase("User does not exist.");
+        theActorInTheSpotlight().should(
+                seeThat(LoginFailed.unsuccessfully())
+        );
     }
 }
